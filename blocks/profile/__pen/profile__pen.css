@@ -1,0 +1,9 @@
+.profile__pen {
+    background-image: url(../../../images/pen.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 10px;
+    width: 10px;
+    margin: 7px;
+}
