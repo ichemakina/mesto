@@ -1,9 +1,15 @@
 .profile__plus {
-    margin: 14px 64px;
     background-image: url(../../../images/plus.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     height: 22px;
     width: 22px;
+}
+
+@media screen and (max-width: 620px) {
+    .profile__plus {
+        height: 16px;
+        width: 16px;
+    }
 }
