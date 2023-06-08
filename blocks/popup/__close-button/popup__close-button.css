@@ -9,6 +9,10 @@
     align-self: flex-end;
 }
 
+.popup__close-button:hover {
+    opacity: 0.6;
+}
+
 @media screen and (max-width: 620px) {
     .popup__close-button {
         height: 20px;
