@@ -1,17 +1,20 @@
 # Проект: Место
 
 ### Обзор
-
+* Интро
 * Figma
-* Картинки
+* GitHub Pages
+
+**Интро**
+
+Учебный проект, который представляет собой интерактивную страницу с фотографиями красивых мест России.
+
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?type=design&node-id=28212-326&t=rhQRZHcEHl4gTtn9-0A0)
 
-**Картинки**
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+**GitHub Pages**
 
-Удачи!
+* [Ссылка на GitHub Pages](https://ichemakina.github.io/mesto/)
