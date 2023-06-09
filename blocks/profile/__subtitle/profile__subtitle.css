@@ -5,10 +5,16 @@
     line-height: 22px;
     margin-top: 16px;
     margin-bottom: 0;
-    max-width: 500px;
+    max-width: 336px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+@media screen and (max-width: 910px) {
+    .profile__subtitle {
+        max-width: 250px;
+    }
 }
 
 @media screen and (max-width: 715px) {
@@ -17,5 +23,6 @@
         line-height: 17px;
         text-align: center;
         margin-top: 14px;
+        max-width: 282px;
     }
 }

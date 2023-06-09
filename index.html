@@ -4,112 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
+    <title lang="en">Mesto</title>
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
     <header class="header">
         <div class="header__logo"></div>
-        <div class="header__line"></div>
     </header>
-    <section class="profile">
-        <div class="profile__person-info">
-            <div class="profile__avatar">
-                <img class="profile__image" src="./images/avatar.jpg" alt="Жак-Ив Кусто">
+    <main>
+        <section class="profile">
+            <div class="profile__person-info">
+                <img class="profile__image" src="./images/avatar.jpg" alt="Фотография пользователя">
+                <div class="profile__info">
+                    <div class="profile__title">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-button" aria-label="Редактировать профиль"></button>
+                    </div>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
             </div>
-            <div class="profile__info">
-                <div class="profile__title">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button">
-                        <div class="profile__pen"></div>
-                    </button>
-                </div>
-                <p class="profile__subtitle">Исследователь океана</p>
-            </div>
-        </div>
-        <button class="profile__add-button">
-            <div class="profile__plus"></div>
-        </button>
-    </section>
-    <section class="photo-grid">
-        <ul class="photo-grid__elements">
-            <li class="photo-grid__element">
-                <img class="photo-grid__image" src="./images/moscow.jpg" alt="Вулкан">
-                <div class="photo-grid__caption">
-                    <p class="photo-grid__name">Москва</p>
-                    <button class="photo-grid__like-button">
-                        <div class="photo-grid__like"></div>
-                    </button>
-                </div>
-            </li>
-            <li class="photo-grid__element">
-                <img class="photo-grid__image" src="./images/sochi.jpg" alt="Исаакиевский собор">
-                <div class="photo-grid__caption">
-                    <p class="photo-grid__name">Сочи</p>
-                    <button class="photo-grid__like-button">
-                        <div class="photo-grid__like"></div>
-                    </button>
-                </div>
-            </li>
-            <li class="photo-grid__element">
-                <img class="photo-grid__image" src="./images/sortavala.jpg" alt="Поезд в городе Сортавала">
-                <div class="photo-grid__caption">
-                    <p class="photo-grid__name">Карелия</p>
-                    <button class="photo-grid__like-button">
-                        <div class="photo-grid__like"></div>
-                    </button>
-                </div>
-            </li>
-            <li class="photo-grid__element">
-                <img class="photo-grid__image" src="./images/dagestan.jpg" alt="Сулакский каньон">
-                <div class="photo-grid__caption">
-                    <p class="photo-grid__name">Дагестан</p>
-                    <button class="photo-grid__like-button">
-                        <div class="photo-grid__like"></div>
-                    </button>
-                </div>
-            </li>
-            <li class="photo-grid__element">
-                <img class="photo-grid__image" src="./images/kamchatka.jpg" alt="Вулкан">
-                <div class="photo-grid__caption">
-                    <p class="photo-grid__name">Камчатка</p>
-                    <button class="photo-grid__like-button">
-                        <div class="photo-grid__like"></div>
-                    </button>
-                </div>
-            </li>
-            <li class="photo-grid__element">
-                <img class="photo-grid__image" src="./images/piter.jpg" alt="Вулкан">
-                <div class="photo-grid__caption">
-                    <p class="photo-grid__name">Санкт-Петербург</p>
-                    <button class="photo-grid__like-button">
-                        <div class="photo-grid__like"></div>
-                    </button>
-                </div>
-            </li>
-        </ul>
-    </section>
+            <button type="button" class="profile__add-button" aria-label="Добавить"></button>
+        </section>
+        <section class="photo-grid">
+            <ul class="photo-grid__elements">
+                <li class="photo-grid__element">
+                    <img class="photo-grid__image" src="./images/moscow.jpg" alt="Вулкан">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__name">Москва</h2>
+                        <button type="button" class="photo-grid__like-button" aria-label="Лайк"></button>
+                    </div>
+                </li>
+                <li class="photo-grid__element">
+                    <img class="photo-grid__image" src="./images/sochi.jpg" alt="Исаакиевский собор">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__name">Сочи</h2>
+                        <button type="button" class="photo-grid__like-button" aria-label="Лайк"></button>
+                    </div>
+                </li>
+                <li class="photo-grid__element">
+                    <img class="photo-grid__image" src="./images/sortavala.jpg" alt="Поезд в городе Сортавала">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__name">Карелия</h2>
+                        <button type="button" class="photo-grid__like-button" aria-label="Лайк"></button>
+                    </div>
+                </li>
+                <li class="photo-grid__element">
+                    <img class="photo-grid__image" src="./images/dagestan.jpg" alt="Сулакский каньон">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__name">Дагестан</h2>
+                        <button type="button" class="photo-grid__like-button" aria-label="Лайк"></button>
+                    </div>
+                </li>
+                <li class="photo-grid__element">
+                    <img class="photo-grid__image" src="./images/kamchatka.jpg" alt="Вулкан">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__name">Камчатка</h2>
+                        <button type="button" class="photo-grid__like-button" aria-label="Лайк"></button>
+                    </div>
+                </li>
+                <li class="photo-grid__element">
+                    <img class="photo-grid__image" src="./images/piter.jpg" alt="Вулкан">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__name">Санкт-Петербург</h2>
+                        <button type="button" class="photo-grid__like-button" aria-label="Лайк"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
     <footer class="footer">
-        <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+        <p lang="en" class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
 
     <div class="popup">
-        <form class="popup__container">
-            <div class="popup__close-button"></div>
+        <div class="popup__container">
+            <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <div class="popup__fields">
-                <label>
-                    <input class="popup__field" type="text" placeholder="Имя" name="name" required>
-                </label>
-                <label>
-                    <input class="popup__field" type="text" placeholder="О себе" name="description" required>
-                </label>
-            </div>
-            <button class="popup__submit-button" type="submit">Сохранить</button>
-        </form>
+            <form class="popup__form" name="editPrifile">
+                <input class="popup__field popup__field_type_name" type="text" placeholder="Имя" name="name" required>
+                <input class="popup__field popup__field_type_description" type="text" placeholder="О себе"
+                    name="description" required>
+                <button type="submit" class="popup__submit-button">Сохранить</button>
+            </form>
+        </div>
     </div>
-    <script src="./index.js"></script>
+    <script src="./scripts/index.js" defer></script>
 </body>
 
 </html>

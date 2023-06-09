@@ -1,5 +1,6 @@
 .photo-grid__element {
     background-color: #fff;
-    min-height: 361px;
+    width: 282px;
     border-radius: 10px;
+    padding-bottom: 31px;
 }

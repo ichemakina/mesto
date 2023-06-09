@@ -11,7 +11,8 @@
     text-align: center;
     color: #FFFFFF;
     margin-top: 48px;
-    width: calc(100% - 36px*2);
+    width: 358px;
+    cursor: pointer;
 }
 
 .popup__submit-button:hover {
@@ -23,6 +24,6 @@
         font-size: 14px;
         line-height: 17px;
         margin-top: 59px;
-        width: calc(100% - 22px*2);
+        width: 238px;
     }
 }
