@@ -10,7 +10,7 @@
     line-height: 22px;
     text-align: center;
     color: #FFFFFF;
-    margin-top: 48px;
+    margin-top: 18px;
     width: 358px;
     cursor: pointer;
     transition: opacity 1s ease-out;
@@ -24,7 +24,7 @@
     .popup__submit-button {
         font-size: 14px;
         line-height: 17px;
-        margin-top: 59px;
+        margin-top: 15px;
         width: 238px;
     }
 }
