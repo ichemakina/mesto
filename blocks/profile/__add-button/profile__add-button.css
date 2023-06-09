@@ -12,6 +12,7 @@
     background-size: 22px 22px;
     background-position: center;
     cursor: pointer;
+    transition: opacity 1s ease-out;
 }
 
 .profile__add-button:hover {
