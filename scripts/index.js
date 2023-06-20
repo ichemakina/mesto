@@ -8,6 +8,8 @@ let form = document.querySelector('.popup__form');
 let nameInput = document.querySelector('.popup__field_type_name');
 let descriptionInput = document.querySelector('.popup__field_type_description');
 
+let likes = document.querySelectorAll('.photo-grid__like-button');
+
 function openForm() {
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileDescription.textContent;
@@ -33,3 +35,7 @@ editButton.addEventListener('click', openForm);
 closeButton.addEventListener('click', closeForm);
 
 form.addEventListener('submit', handleFormSubmit);
+
+likes.forEach(like => like.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('photo-grid__like-button_active');
+}));
