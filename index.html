@@ -34,15 +34,30 @@
         <p lang="en" class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup__edit-profile">
         <div class="popup__container">
-            <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+            <button type="button" class="popup__close-button popup__close-button_form_edit-profile"
+                aria-label="Закрыть"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="editPrifile">
                 <input class="popup__field popup__field_type_name" type="text" placeholder="Имя" name="name" required>
                 <input class="popup__field popup__field_type_description" type="text" placeholder="О себе"
                     name="description" required>
                 <button type="submit" class="popup__submit-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup__add-card">
+        <div class="popup__container">
+            <button type="button" class="popup__close-button popup__close-button_form_add-card"
+                aria-label="Закрыть"></button>
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form" name="addCard">
+                <input class="popup__field popup__field_type_card-name" type="text" placeholder="Название"
+                    name="card-name" required>
+                <input class="popup__field popup__field_type_card-img-link" type="text" placeholder="Ссылка на картинку"
+                    name="card-img-link" required>
+                <button type="submit" class="popup__submit-button">Создать</button>
             </form>
         </div>
     </div>

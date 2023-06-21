@@ -1,39 +1,42 @@
-let editButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let closeButton = document.querySelector('.popup__close-button');
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__subtitle');
+/* Открытие формы редактирования профиля */
+const editButton = document.querySelector('.profile__edit-button');
+const popupEditProfile = document.querySelector('.popup__edit-profile');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__subtitle');
+const nameInput = document.querySelector('.popup__field_type_name');
+const descriptionInput = document.querySelector('.popup__field_type_description');
+editButton.addEventListener('click', openEditProfileForm);
 
-let form = document.querySelector('.popup__form');
-let nameInput = document.querySelector('.popup__field_type_name');
-let descriptionInput = document.querySelector('.popup__field_type_description');
-
-function openForm() {
+function openEditProfileForm() {
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileDescription.textContent;
-    popup.classList.add('popup_opened');
+    popupEditProfile.classList.add('popup_opened');
 }
 
-function closeForm() {
-    popup.classList.remove('popup_opened');
+/* Закрытие формы редактирования профиля */
+const closeEditProfileFormButton = document.querySelector('.popup__close-button_form_edit-profile');
+closeEditProfileFormButton.addEventListener('click', closeEditProfileForm);
+
+function closeEditProfileForm(evt) {
+    popupEditProfile.classList.remove('popup_opened');
 }
 
-function handleFormSubmit(evt) {
+/* Изменение информации в профиле */
+const editProfileForm = document.querySelector('form[name="editPrifile"]');
+editProfileForm.addEventListener('submit', profileInfoSubmit);
+
+function profileInfoSubmit(evt) {
     evt.preventDefault();
 
-    let newName = nameInput.value;
-    let newDescription = descriptionInput.value;
+    const newName = nameInput.value;
+    const newDescription = descriptionInput.value;
 
     profileName.textContent = newName;
     profileDescription.textContent = newDescription;
-    closeForm();
+    closeEditProfileForm();
 }
 
-editButton.addEventListener('click', openForm);
-closeButton.addEventListener('click', closeForm);
-
-form.addEventListener('submit', handleFormSubmit);
-
+/* Добавление карточек "из коробки" */
 const initialCards = [
     {
         name: 'Архыз',
@@ -73,8 +76,48 @@ initialCards.forEach(function (element) {
     cardsList.append(cardElement);
 });
 
+/* Добавление лайков */
 const likes = document.querySelectorAll('.photo-grid__like-button');
 
 likes.forEach(like => like.addEventListener('click', (evt) => {
     evt.target.classList.toggle('photo-grid__like-button_active');
 }));
+
+/* Открытие формы для добавления карточки */
+const popupAddCard = document.querySelector('.popup__add-card');
+
+const addButton = document.querySelector('.profile__add-button');
+addButton.addEventListener('click', openAddCardForm);
+
+function openAddCardForm() {
+    popupAddCard.classList.add('popup_opened');
+}
+
+/* Закрытие формы для добавления карточки */
+const closeAddCardFormButton = document.querySelector('.popup__close-button_form_add-card');
+closeAddCardFormButton.addEventListener('click', closeAddCardForm);
+
+function closeAddCardForm(evt) {
+    popupAddCard.classList.remove('popup_opened');
+}
+
+/* Добавление карточки */
+const addCardForm = document.querySelector('form[name="addCard"]');
+const cardNameInput = document.querySelector('.popup__field_type_card-name');
+const imgLinkInput = document.querySelector('.popup__field_type_card-img-link');
+addCardForm.addEventListener('submit', cardSubmit);
+
+function cardSubmit(evt) {
+    evt.preventDefault();
+
+    const newCardName = cardNameInput.value;
+    const newImgLink = imgLinkInput.value;
+
+    const cardElement = cardTemplate.cloneNode(true);
+
+    cardElement.querySelector('.photo-grid__name').textContent = newCardName;
+    cardElement.querySelector('.photo-grid__image').setAttribute('src', newImgLink);
+
+    cardsList.append(cardElement);
+    closeAddCardForm();
+}
