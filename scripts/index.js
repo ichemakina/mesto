@@ -23,9 +23,9 @@ function closeEditProfileForm(evt) {
 
 /* Изменение информации в профиле */
 const editProfileForm = document.querySelector('form[name="editPrifile"]');
-editProfileForm.addEventListener('submit', profileInfoSubmit);
+editProfileForm.addEventListener('submit', submitProfileInfo);
 
-function profileInfoSubmit(evt) {
+function submitProfileInfo(evt) {
     evt.preventDefault();
 
     const newName = nameInput.value;
@@ -105,9 +105,9 @@ function closeAddCardForm(evt) {
 const addCardForm = document.querySelector('form[name="addCard"]');
 const cardNameInput = document.querySelector('.popup__field_type_card-name');
 const imgLinkInput = document.querySelector('.popup__field_type_card-img-link');
-addCardForm.addEventListener('submit', cardSubmit);
+addCardForm.addEventListener('submit', addCard);
 
-function cardSubmit(evt) {
+function addCard(evt) {
     evt.preventDefault();
 
     const newCardName = cardNameInput.value;
