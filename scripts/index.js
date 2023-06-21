@@ -72,16 +72,16 @@ initialCards.forEach(function (element) {
 
     cardElement.querySelector('.photo-grid__name').textContent = element.name;
     cardElement.querySelector('.photo-grid__image').setAttribute('src', element.link);
+    cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
+    cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
 
     cardsList.append(cardElement);
 });
 
 /* Добавление лайков */
-const likes = document.querySelectorAll('.photo-grid__like-button');
-
-likes.forEach(like => like.addEventListener('click', (evt) => {
+function like(evt) {
     evt.target.classList.toggle('photo-grid__like-button_active');
-}));
+}
 
 /* Открытие формы для добавления карточки */
 const popupAddCard = document.querySelector('.popup__add-card');
@@ -117,7 +117,14 @@ function addCard(evt) {
 
     cardElement.querySelector('.photo-grid__name').textContent = newCardName;
     cardElement.querySelector('.photo-grid__image').setAttribute('src', newImgLink);
+    cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
+    cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
 
     cardsList.prepend(cardElement);
     closeAddCardForm();
+}
+
+/* Удаление карточки */
+function deleteCard(evt) {
+    evt.target.parentElement.remove();
 }
