@@ -118,6 +118,6 @@ function cardSubmit(evt) {
     cardElement.querySelector('.photo-grid__name').textContent = newCardName;
     cardElement.querySelector('.photo-grid__image').setAttribute('src', newImgLink);
 
-    cardsList.append(cardElement);
+    cardsList.prepend(cardElement);
     closeAddCardForm();
 }
