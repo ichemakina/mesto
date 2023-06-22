@@ -1,6 +1,6 @@
 /* Открытие формы редактирования профиля */
 const editButton = document.querySelector('.profile__edit-button');
-const popupEditProfile = document.querySelector('.popup__edit-profile');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('.popup__field_type_name');
@@ -85,7 +85,7 @@ function like(evt) {
 }
 
 /* Открытие формы для добавления карточки */
-const popupAddCard = document.querySelector('.popup__add-card');
+const popupAddCard = document.querySelector('.popup_type_add-card');
 
 const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
@@ -132,7 +132,7 @@ function deleteCard(evt) {
 }
 
 /* Просмотр картинки */
-const popupCardImage = document.querySelector('.popup__card-img');
+const popupCardImage = document.querySelector('.popup_type_card-img');
 const popupCardImageContent = document.querySelector('.popup__card-img-content');
 const cardImageTemplate = document.querySelector('.popup-card-img-template').content;
 
