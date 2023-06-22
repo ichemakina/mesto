@@ -74,6 +74,7 @@ initialCards.forEach(function (element) {
     cardElement.querySelector('.photo-grid__image').setAttribute('src', element.link);
     cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
     cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
+    cardElement.querySelector('.photo-grid__image').addEventListener('click', openCardImage);
 
     cardsList.append(cardElement);
 });
@@ -119,6 +120,7 @@ function addCard(evt) {
     cardElement.querySelector('.photo-grid__image').setAttribute('src', newImgLink);
     cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
     cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
+    cardElement.querySelector('.photo-grid__image').addEventListener('click', openCardImage);
 
     cardsList.prepend(cardElement);
     closeAddCardForm();
@@ -127,4 +129,30 @@ function addCard(evt) {
 /* Удаление карточки */
 function deleteCard(evt) {
     evt.target.parentElement.remove();
+}
+
+/* Просмотр картинки */
+const popupCardImage = document.querySelector('.popup__card-img');
+const popupCardImageContent = document.querySelector('.popup__card-img-content');
+const cardImageTemplate = document.querySelector('.popup-card-img-template').content;
+
+function openCardImage(evt) {
+    const imageLink = evt.target.src;
+    const imageName = evt.target.parentElement.querySelector('.photo-grid__name').textContent;
+    const cardImageElement = cardImageTemplate.cloneNode(true);
+
+    cardImageElement.querySelector('.popup__image').setAttribute('src', imageLink);
+    cardImageElement.querySelector('.popup__caption').textContent = imageName;
+
+    popupCardImage.classList.add('popup_opened');
+    popupCardImageContent.append(cardImageElement);
+}
+
+/* Закрытие просмотра картинки */
+const closeCardImageButton = document.querySelector('.popup__close-button-card-img');
+closeCardImageButton.addEventListener('click', closeCardImage);
+
+function closeCardImage(evt) {
+    popupCardImage.classList.remove('popup_opened');
+    evt.target.parentElement.querySelector('.popup__figure').remove();
 }
