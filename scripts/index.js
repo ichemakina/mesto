@@ -17,7 +17,7 @@ function openEditProfileForm() {
 const closeEditProfileFormButton = document.querySelector('.popup__close-button_form_edit-profile');
 closeEditProfileFormButton.addEventListener('click', closeEditProfileForm);
 
-function closeEditProfileForm(evt) {
+function closeEditProfileForm() {
     popupEditProfile.classList.remove('popup_opened');
 }
 
@@ -98,7 +98,7 @@ function openAddCardForm() {
 const closeAddCardFormButton = document.querySelector('.popup__close-button_form_add-card');
 closeAddCardFormButton.addEventListener('click', closeAddCardForm);
 
-function closeAddCardForm(evt) {
+function closeAddCardForm() {
     popupAddCard.classList.remove('popup_opened');
 }
 
@@ -149,7 +149,7 @@ function openCardImage(evt) {
 }
 
 /* Закрытие просмотра картинки */
-const closeCardImageButton = document.querySelector('.popup__close-button-card-img');
+const closeCardImageButton = document.querySelector('.popup__close-button_form_card-img');
 closeCardImageButton.addEventListener('click', closeCardImage);
 
 function closeCardImage(evt) {
