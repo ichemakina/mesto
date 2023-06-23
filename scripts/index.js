@@ -121,19 +121,15 @@ function deleteCard(evt) {
 
 /* Просмотр картинки */
 const popupCardImage = document.querySelector('.popup_type_card-img');
-const popupCardImageContent = document.querySelector('.popup__card-img-content');
-const cardImageTemplate = document.querySelector('.popup-card-img-template').content;
 
 function openCardImage(evt) {
     const imageLink = evt.target.src;
     const imageName = evt.target.alt;
-    const cardImageElement = cardImageTemplate.cloneNode(true);
 
-    cardImageElement.querySelector('.popup__image').setAttribute('src', imageLink);
-    cardImageElement.querySelector('.popup__caption').textContent = imageName;
+    document.querySelector('.popup__image').setAttribute('src', imageLink);
+    document.querySelector('.popup__caption').textContent = imageName;
 
     popupCardImage.classList.add('popup_opened');
-    popupCardImageContent.append(cardImageElement);
 }
 
 /* Закрытие просмотра картинки */
@@ -142,7 +138,6 @@ closeCardImageButton.addEventListener('click', closeCardImage);
 
 function closeCardImage(evt) {
     popupCardImage.classList.remove('popup_opened');
-    evt.target.parentElement.querySelector('.popup__figure').remove();
 }
 
 /* Создание карточки */
