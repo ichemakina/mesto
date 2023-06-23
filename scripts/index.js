@@ -109,6 +109,8 @@ function addCard(evt) {
 
     const newCard = createCard(newCardName, newImgLink);
     cardsList.prepend(newCard);
+
+    evt.target.reset();
     closeAddCardForm();
 }
 
@@ -124,7 +126,7 @@ const cardImageTemplate = document.querySelector('.popup-card-img-template').con
 
 function openCardImage(evt) {
     const imageLink = evt.target.src;
-    const imageName = evt.target.parentElement.querySelector('.photo-grid__name').textContent;
+    const imageName = evt.target.alt;
     const cardImageElement = cardImageTemplate.cloneNode(true);
 
     cardImageElement.querySelector('.popup__image').setAttribute('src', imageLink);
@@ -149,6 +151,7 @@ function createCard(cardName, imgLink) {
 
     cardElement.querySelector('.photo-grid__name').textContent = cardName;
     cardElement.querySelector('.photo-grid__image').setAttribute('src', imgLink);
+    cardElement.querySelector('.photo-grid__image').setAttribute('alt', cardName);
     cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
     cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
     cardElement.querySelector('.photo-grid__image').addEventListener('click', openCardImage);
