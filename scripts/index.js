@@ -68,15 +68,8 @@ const cardsList = document.querySelector('.photo-grid__elements');
 const cardTemplate = document.querySelector('.photo-grid-element-template').content;
 
 initialCards.forEach(function (element) {
-    const cardElement = cardTemplate.cloneNode(true);
-
-    cardElement.querySelector('.photo-grid__name').textContent = element.name;
-    cardElement.querySelector('.photo-grid__image').setAttribute('src', element.link);
-    cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
-    cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
-    cardElement.querySelector('.photo-grid__image').addEventListener('click', openCardImage);
-
-    cardsList.append(cardElement);
+    const newCard = createCard(element.name, element.link);
+    cardsList.append(newCard);
 });
 
 /* Добавление лайков */
@@ -114,15 +107,8 @@ function addCard(evt) {
     const newCardName = cardNameInput.value;
     const newImgLink = imgLinkInput.value;
 
-    const cardElement = cardTemplate.cloneNode(true);
-
-    cardElement.querySelector('.photo-grid__name').textContent = newCardName;
-    cardElement.querySelector('.photo-grid__image').setAttribute('src', newImgLink);
-    cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
-    cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
-    cardElement.querySelector('.photo-grid__image').addEventListener('click', openCardImage);
-
-    cardsList.prepend(cardElement);
+    const newCard = createCard(newCardName, newImgLink);
+    cardsList.prepend(newCard);
     closeAddCardForm();
 }
 
@@ -155,4 +141,17 @@ closeCardImageButton.addEventListener('click', closeCardImage);
 function closeCardImage(evt) {
     popupCardImage.classList.remove('popup_opened');
     evt.target.parentElement.querySelector('.popup__figure').remove();
+}
+
+/* Создание карточки */
+function createCard(cardName, imgLink) {
+    const cardElement = cardTemplate.cloneNode(true);
+
+    cardElement.querySelector('.photo-grid__name').textContent = cardName;
+    cardElement.querySelector('.photo-grid__image').setAttribute('src', imgLink);
+    cardElement.querySelector('.photo-grid__like-button').addEventListener('click', like);
+    cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteCard);
+    cardElement.querySelector('.photo-grid__image').addEventListener('click', openCardImage);
+
+    return cardElement;
 }
