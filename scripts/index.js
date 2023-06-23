@@ -10,7 +10,7 @@ editButton.addEventListener('click', openEditProfileForm);
 function openEditProfileForm() {
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileDescription.textContent;
-    popupEditProfile.classList.add('popup_opened');
+    openPopup(popupEditProfile);
 }
 
 /* Закрытие формы редактирования профиля */
@@ -18,7 +18,7 @@ const closeEditProfileFormButton = document.querySelector('.popup__close-button_
 closeEditProfileFormButton.addEventListener('click', closeEditProfileForm);
 
 function closeEditProfileForm() {
-    popupEditProfile.classList.remove('popup_opened');
+    closePopup(popupEditProfile);
 }
 
 /* Изменение информации в профиле */
@@ -57,7 +57,7 @@ const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
 
 function openAddCardForm() {
-    popupAddCard.classList.add('popup_opened');
+    openPopup(popupAddCard);
 }
 
 /* Закрытие формы для добавления карточки */
@@ -65,7 +65,7 @@ const closeAddCardFormButton = document.querySelector('.popup__close-button_form
 closeAddCardFormButton.addEventListener('click', closeAddCardForm);
 
 function closeAddCardForm() {
-    popupAddCard.classList.remove('popup_opened');
+    closePopup(popupAddCard);
 }
 
 /* Добавление карточки */
@@ -102,7 +102,7 @@ function openCardImage(evt) {
     document.querySelector('.popup__image').setAttribute('src', imageLink);
     document.querySelector('.popup__caption').textContent = imageName;
 
-    popupCardImage.classList.add('popup_opened');
+    openPopup(popupCardImage);
 }
 
 /* Закрытие просмотра картинки */
@@ -110,7 +110,7 @@ const closeCardImageButton = document.querySelector('.popup__close-button_form_c
 closeCardImageButton.addEventListener('click', closeCardImage);
 
 function closeCardImage(evt) {
-    popupCardImage.classList.remove('popup_opened');
+    closePopup(popupCardImage);
 }
 
 /* Создание карточки */
@@ -125,4 +125,14 @@ function createCard(cardName, imgLink) {
     cardElement.querySelector('.photo-grid__image').addEventListener('click', openCardImage);
 
     return cardElement;
+}
+
+/* Открытие попапа */
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+}
+
+/* Закрытие попапа */
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
 }
