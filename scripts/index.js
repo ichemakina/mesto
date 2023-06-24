@@ -100,6 +100,7 @@ function openCardImage(evt) {
     const imageName = evt.target.alt;
 
     document.querySelector('.popup__image').setAttribute('src', imageLink);
+    document.querySelector('.popup__image').setAttribute('alt', imageName);
     document.querySelector('.popup__caption').textContent = imageName;
 
     openPopup(popupCardImage);
