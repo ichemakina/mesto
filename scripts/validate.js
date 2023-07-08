@@ -1,8 +1,10 @@
 function toggleButtonState(filedList, buttonElement, inactiveButtonClass) {
     if (hasInvalidInput(filedList)) {
+        buttonElement.setAttribute('disabled', 'disabled');
         buttonElement.classList.add(inactiveButtonClass);
     } else {
         buttonElement.classList.remove(inactiveButtonClass);
+        buttonElement.removeAttribute('disabled', 'disabled');
     }
 };
 
@@ -57,8 +59,6 @@ function enableValidation(settings) {
         setEventListeners(settings, formElement);
     });
 }
-
-
 
 enableValidation({
     formSelector: '.popup__form',
