@@ -131,9 +131,30 @@ function createCard(cardName, imgLink) {
 /* Открытие попапа */
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    console.log(popup);
+    document.addEventListener('keydown', escapeHandler);
+    popup.addEventListener("click", popupClickHandler);
 }
 
 /* Закрытие попапа */
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', escapeHandler);
+    popup.removeEventListener("click", popupClickHandler);
+}
+
+/* Закртите попапа по Esc */
+function escapeHandler(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if (evt.code === "Escape") {
+        closePopup(popup);
+    }
+}
+
+/* Закртите попапа кликом на оверлей */
+function popupClickHandler(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if (evt.currentTarget === evt.target) {
+        closePopup(popup);
+    }
 }
