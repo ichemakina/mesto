@@ -1,4 +1,5 @@
 import { Card } from "./Card.js";
+import { toggleButtonState } from "./validate.js";
 
 /* Открытие формы редактирования профиля */
 const editButton = document.querySelector('.profile__edit-button');
