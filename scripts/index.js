@@ -13,6 +13,11 @@ const descriptionInput = document.querySelector('.popup__field_type_description'
 editButton.addEventListener('click', openEditProfileForm);
 
 function openEditProfileForm() {
+    const filedList = Array.from(formEditProfile.querySelectorAll('.popup__field'));
+
+    const formValidator = createFormValidator(settings, formEditProfile);
+    formValidator.clearError(filedList);
+
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileDescription.textContent;
     openPopup(popupEditProfile);
