@@ -1,7 +1,7 @@
 import { Card } from "./Card.js";
-import { toggleButtonState } from "./validate.js";
 import { openPopup, closePopup } from "./utils.js";
 import { initialCards } from "./constants.js"
+import { createFormValidator, settings } from "./validate.js";
 
 /* Открытие формы редактирования профиля */
 const editButton = document.querySelector('.profile__edit-button');
@@ -19,16 +19,16 @@ function openEditProfileForm() {
 }
 
 /* Закрытие формы редактирования профиля */
-const closeEditProfileFormButton = document.querySelector('.popup__close-button_form_edit-profile');
-closeEditProfileFormButton.addEventListener('click', closeEditProfileForm);
+const buttonClosePopupProfile = document.querySelector('.popup__close-button_form_edit-profile');
+buttonClosePopupProfile.addEventListener('click', closeEditProfileForm);
 
 function closeEditProfileForm() {
     closePopup(popupEditProfile);
 }
 
 /* Изменение информации в профиле */
-const editProfileForm = document.querySelector('form[name="editPrifile"]');
-editProfileForm.addEventListener('submit', submitProfileInfo);
+const formEditProfile = document.querySelector('form[name="editPrifile"]');
+formEditProfile.addEventListener('submit', submitProfileInfo);
 
 function submitProfileInfo(evt) {
     evt.preventDefault();
@@ -46,9 +46,8 @@ const cardsList = document.querySelector('.photo-grid__elements');
 const cardTemplateClass = '.photo-grid-element-template';
 
 initialCards.forEach(function (element) {
-    const newCard = new Card(element, cardTemplateClass);
-    const cardElement = newCard.createCard();
-    cardsList.append(cardElement);
+    const newCard = createNewCard(element, cardTemplateClass);
+    cardsList.append(newCard);
 });
 
 /* Открытие формы для добавления карточки */
@@ -58,26 +57,27 @@ const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
 
 function openAddCardForm() {
-    const filedList = Array.from(addCardForm.querySelectorAll('.popup__field'));
-    const buttonElement = addCardForm.querySelector('.popup__submit-button');
-    toggleButtonState(filedList, buttonElement, 'popup__submit-button_disabled');
+    const filedList = Array.from(formAddCard.querySelectorAll('.popup__field'));
+
+    const formValidator = createFormValidator(settings, popupAddCard);
+    formValidator.toggleButtonState(filedList);
 
     openPopup(popupAddCard);
 }
 
 /* Закрытие формы для добавления карточки */
-const closeAddCardFormButton = document.querySelector('.popup__close-button_form_add-card');
-closeAddCardFormButton.addEventListener('click', closeAddCardForm);
+const buttonClosePopupAddCard = document.querySelector('.popup__close-button_form_add-card');
+buttonClosePopupAddCard.addEventListener('click', closeAddCardForm);
 
 function closeAddCardForm() {
     closePopup(popupAddCard);
 }
 
 /* Добавление карточки */
-const addCardForm = document.querySelector('form[name="addCard"]');
+const formAddCard = document.querySelector('form[name="addCard"]');
 const cardNameInput = document.querySelector('.popup__field_type_card-name');
 const imgLinkInput = document.querySelector('.popup__field_type_card-img-link');
-addCardForm.addEventListener('submit', addCard);
+formAddCard.addEventListener('submit', addCard);
 
 function addCard(evt) {
     evt.preventDefault();
@@ -89,10 +89,14 @@ function addCard(evt) {
         link: newImgLink
     };
 
-    const newCard = new Card(cardData, cardTemplateClass);
-    const cardElement = newCard.createCard();
-    cardsList.prepend(cardElement);
+    const newCard = createNewCard(cardData, cardTemplateClass);
+    cardsList.prepend(newCard);
 
     evt.target.reset();
     closeAddCardForm();
+}
+
+function createNewCard(cardData, cardTemplateClass) {
+    const newCard = new Card(cardData, cardTemplateClass);
+    return newCard.createCard();
 }

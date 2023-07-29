@@ -1,5 +1,3 @@
-import { toggleButtonState } from "./validate.js";
-
 export class FormValidator {
     constructor(settings, formElement) {
         this._formElement = formElement;
@@ -41,13 +39,24 @@ export class FormValidator {
     _setEventListeners() {
         const filedList = Array.from(this._formElement.querySelectorAll(this._filedSelector));
         const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-        toggleButtonState(filedList, buttonElement, this._inactiveButtonClass);
+        this.toggleButtonState(filedList);
         filedList.forEach((fieldElement) => {
             fieldElement.addEventListener('input', () => {
                 this._checkInputValidity(fieldElement);
-                toggleButtonState(filedList, buttonElement, this._inactiveButtonClass);
+                this.toggleButtonState(filedList);
             });
         });
+    }
+
+    toggleButtonState(filedList) {
+        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        if (this._hasInvalidInput(filedList)) {
+            buttonElement.setAttribute('disabled', 'disabled');
+            buttonElement.classList.add(this._inactiveButtonClass);
+        } else {
+            buttonElement.classList.remove(this._inactiveButtonClass);
+            buttonElement.removeAttribute('disabled', 'disabled');
+        }
     }
 
     enableValidation() {
