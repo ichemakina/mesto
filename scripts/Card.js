@@ -1,7 +1,5 @@
-import { openPopup, closePopup } from './index.js';
-
-const popupCardImage = document.querySelector('.popup_type_card-img');
-const closeCardImageButton = document.querySelector('.popup__close-button_form_card-img');
+import { openPopup, closePopup } from './utils.js';
+import { closeCardImageButton, popupCardImage, popupImage, popupImageCaption } from './constants.js';
 
 export class Card {
     constructor(data, cardTemplateClass) {
@@ -13,37 +11,42 @@ export class Card {
     _getTemplate() {
         const cardElement = document.querySelector(this._cardTemplateClass)
             .content
+            .querySelector('.photo-grid__element')
             .cloneNode(true);
 
         return cardElement;
     }
 
     _setEventListeners() {
-        this._cardElement.querySelector('.photo-grid__like-button').addEventListener('click', this._like);
-        this._cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', this._deleteCard);
-        this._cardElement.querySelector('.photo-grid__image').addEventListener('click', this._openCardImage);
+        this._cardElement.querySelector('.photo-grid__like-button').addEventListener('click', () => {
+            this._like()
+        });
+        this._cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', () => {
+            this._deleteCard()
+        });
+        this._cardElement.querySelector('.photo-grid__image').addEventListener('click', () => {
+            this._openCardImage()
+        });
 
         closeCardImageButton.addEventListener('click', this._closeCardImage);
     }
 
     /* Добавление лайков */
-    _like(evt) {
-        evt.target.classList.toggle('photo-grid__like-button_active');
+    _like() {
+        const likeElement = this._cardElement.querySelector('.photo-grid__like-button');
+        likeElement.classList.toggle('photo-grid__like-button_active');
     }
 
     /* Удаление карточки */
-    _deleteCard(evt) {
-        evt.target.parentElement.remove();
+    _deleteCard() {
+        this._cardElement.remove();
     }
 
     /* Просмотр картинки */
-    _openCardImage(evt) {
-        const imageLink = evt.target.src;
-        const imageName = evt.target.alt;
-
-        document.querySelector('.popup__image').setAttribute('src', imageLink);
-        document.querySelector('.popup__image').setAttribute('alt', imageName);
-        document.querySelector('.popup__caption').textContent = imageName;
+    _openCardImage() {
+        popupImage.setAttribute('src', this._link);
+        popupImage.setAttribute('alt', this._name);
+        popupImageCaption.textContent = this._name;
 
         openPopup(popupCardImage);
     }
@@ -56,9 +59,12 @@ export class Card {
     createCard() {
         this._cardElement = this._getTemplate();
 
-        this._cardElement.querySelector('.photo-grid__name').textContent = this._name;
-        this._cardElement.querySelector('.photo-grid__image').setAttribute('src', this._link);
-        this._cardElement.querySelector('.photo-grid__image').setAttribute('alt', this._name);
+        const cardNameElement = this._cardElement.querySelector('.photo-grid__name');
+        const cardImageElement = this._cardElement.querySelector('.photo-grid__image');
+
+        cardNameElement.textContent = this._name;
+        cardImageElement.setAttribute('src', this._link);
+        cardImageElement.setAttribute('alt', this._name);
 
         this._setEventListeners();
 
