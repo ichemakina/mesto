@@ -1,11 +1,10 @@
 import { Card } from "./Card.js";
 import { openPopup, closePopup } from "./utils.js";
-import { initialCards } from "./constants.js"
-import { createFormValidator, settings } from "./validate.js";
+import { initialCards, popupCardImage, popupEditProfile, popupAddCard } from "./constants.js"
+import { validatorFormEditProfile, validatorFormAddCard } from "./validate.js";
 
 /* Открытие формы редактирования профиля */
 const editButton = document.querySelector('.profile__edit-button');
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('.popup__field_type_name');
@@ -13,10 +12,7 @@ const descriptionInput = document.querySelector('.popup__field_type_description'
 editButton.addEventListener('click', openEditProfileForm);
 
 function openEditProfileForm() {
-    const filedList = Array.from(formEditProfile.querySelectorAll('.popup__field'));
-
-    const formValidator = createFormValidator(settings, formEditProfile);
-    formValidator.clearError(filedList);
+    validatorFormEditProfile.clearError();
 
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileDescription.textContent;
@@ -56,16 +52,12 @@ initialCards.forEach(function (element) {
 });
 
 /* Открытие формы для добавления карточки */
-const popupAddCard = document.querySelector('.popup_type_add-card');
 
 const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
 
 function openAddCardForm() {
-    const filedList = Array.from(formAddCard.querySelectorAll('.popup__field'));
-
-    const formValidator = createFormValidator(settings, popupAddCard);
-    formValidator.toggleButtonState(filedList);
+    validatorFormAddCard.toggleButtonState();
 
     openPopup(popupAddCard);
 }
@@ -104,4 +96,13 @@ function addCard(evt) {
 function createNewCard(cardData, cardTemplateClass) {
     const newCard = new Card(cardData, cardTemplateClass);
     return newCard.createCard();
+}
+
+/* Закрытие просмотра картинки */
+const closeCardImageButton = document.querySelector('.popup__close-button_form_card-img');
+closeCardImageButton.addEventListener('click', closeCardImage);
+
+
+function closeCardImage() {
+    closePopup(popupCardImage);
 }

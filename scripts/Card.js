@@ -1,5 +1,5 @@
-import { openPopup, closePopup } from './utils.js';
-import { closeCardImageButton, popupCardImage, popupImage, popupImageCaption } from './constants.js';
+import { openPopup } from './utils.js';
+import { popupCardImage, popupImage, popupImageCaption } from './constants.js';
 
 export class Card {
     constructor(data, cardTemplateClass) {
@@ -27,8 +27,6 @@ export class Card {
         this._cardElement.querySelector('.photo-grid__image').addEventListener('click', () => {
             this._openCardImage()
         });
-
-        closeCardImageButton.addEventListener('click', this._closeCardImage);
     }
 
     /* Добавление лайков */
@@ -49,11 +47,6 @@ export class Card {
         popupImageCaption.textContent = this._name;
 
         openPopup(popupCardImage);
-    }
-
-    /* Закрытие просмотра картинки */
-    _closeCardImage() {
-        closePopup(popupCardImage);
     }
 
     createCard() {

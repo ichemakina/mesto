@@ -14,8 +14,8 @@ export function closePopup(popup) {
 
 /* Закрытие попапа по Esc */
 function escapeHandler(evt) {
-    const popup = document.querySelector('.popup_opened');
     if (evt.code === "Escape") {
+        const popup = document.querySelector('.popup_opened');
         closePopup(popup);
     }
 }

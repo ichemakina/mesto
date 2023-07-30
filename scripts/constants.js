@@ -25,7 +25,10 @@ export const initialCards = [
     }
 ];
 
+export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+
+export const popupAddCard = document.querySelector('.popup_type_add-card');
+
 export const popupCardImage = document.querySelector('.popup_type_card-img');
-export const closeCardImageButton = document.querySelector('.popup__close-button_form_card-img');
 export const popupImage = document.querySelector('.popup__image');
 export const popupImageCaption = document.querySelector('.popup__caption');

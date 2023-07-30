@@ -1,4 +1,5 @@
 import { FormValidator } from "./FormValidator.js";
+import { popupEditProfile, popupAddCard } from "./constants.js";
 
 export const settings = {
     formSelector: '.popup__form',
@@ -8,13 +9,9 @@ export const settings = {
     filedErrorClass: 'popup__filed_type_error',
     errorClass: 'popup__field-error_visible'
 };
-const formList = Array.from(document.querySelectorAll(settings.formSelector));
 
-formList.forEach((formElement) => {
-    const formValidator = createFormValidator(settings, formElement);
-    formValidator.enableValidation();
-})
+export const validatorFormEditProfile = new FormValidator(settings, popupEditProfile);
+validatorFormEditProfile.enableValidation();
 
-export function createFormValidator(settings, formElement){
-    return new FormValidator(settings, formElement);
-}
+export const validatorFormAddCard = new FormValidator(settings, popupAddCard);
+validatorFormAddCard.enableValidation();
