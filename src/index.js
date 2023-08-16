@@ -1,7 +1,9 @@
-import { Card } from "./Card.js";
-import { openPopup, closePopup } from "./utils.js";
-import { initialCards, popupCardImage, popupEditProfile, popupAddCard } from "./constants.js"
-import { validatorFormEditProfile, validatorFormAddCard } from "./validate.js";
+import './pages/index.css'; 
+
+import { Card } from "./components/Card.js";
+import { openPopup, closePopup } from "./utils/utils.js";
+import { initialCards, popupCardImage, popupEditProfile, popupAddCard } from "./utils/constants.js"
+import { validatorFormEditProfile, validatorFormAddCard } from "./utils/validate.js";
 
 /* Открытие формы редактирования профиля */
 const editButton = document.querySelector('.profile__edit-button');

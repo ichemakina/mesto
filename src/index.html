@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title lang="en">Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
@@ -15,7 +14,7 @@
     <main class="main">
         <section class="profile">
             <div class="profile__person-info">
-                <img class="profile__image" src="./images/avatar.jpg" alt="Фотография пользователя">
+                <img class="profile__image" src="<%= require('./images/avatar.jpg')%>" alt="Фотография пользователя">
                 <div class="profile__info">
                     <div class="profile__title">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -94,7 +93,6 @@
             </div>
         </li>
     </template>
-    <script type="module" src="./scripts/index.js" defer></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
-import { openPopup } from './utils.js';
-import { popupCardImage, popupImage, popupImageCaption } from './constants.js';
+import { openPopup } from '../utils/utils.js';
+import { popupCardImage, popupImage, popupImageCaption } from '../utils/constants.js';
 
 export class Card {
     constructor(data, cardTemplateClass) {

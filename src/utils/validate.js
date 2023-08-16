@@ -1,5 +1,5 @@
-import { FormValidator } from "./FormValidator.js";
-import { popupEditProfile, popupAddCard } from "./constants.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { popupEditProfile, popupAddCard } from "../utils/constants.js";
 
 export const settings = {
     formSelector: '.popup__form',
