@@ -1,6 +1,7 @@
-import './pages/index.css'; 
+import './pages/index.css';
 
 import { Card } from "./components/Card.js";
+import { Section } from "./components/Section.js";
 import { openPopup, closePopup } from "./utils/utils.js";
 import { initialCards, popupCardImage, popupEditProfile, popupAddCard } from "./utils/constants.js"
 import { validatorFormEditProfile, validatorFormAddCard } from "./utils/validate.js";
@@ -45,13 +46,14 @@ function submitProfileInfo(evt) {
 }
 
 /* Добавление карточек "из коробки" */
-const cardsList = document.querySelector('.photo-grid__elements');
-const cardTemplateClass = '.photo-grid-element-template';
-
-initialCards.forEach(function (element) {
-    const newCard = createNewCard(element, cardTemplateClass);
-    cardsList.append(newCard);
-});
+const defaultCardList = new Section({
+    data: initialCards,
+    renderer: (item) => {
+        const cardElement = createNewCard(item);
+        defaultCardList.addItem(cardElement);
+    }
+}, '.photo-grid__elements');
+defaultCardList.renderItems();
 
 /* Открытие формы для добавления карточки */
 
@@ -88,15 +90,15 @@ function addCard(evt) {
         link: newImgLink
     };
 
-    const newCard = createNewCard(cardData, cardTemplateClass);
-    cardsList.prepend(newCard);
+    const cardElement = createNewCard(cardData);
+    defaultCardList.addItem(cardElement, true);
 
     evt.target.reset();
     closeAddCardForm();
 }
 
-function createNewCard(cardData, cardTemplateClass) {
-    const newCard = new Card(cardData, cardTemplateClass);
+function createNewCard(cardData) {
+    const newCard = new Card(cardData, '.photo-grid-element-template');
     return newCard.createCard();
 }
 
