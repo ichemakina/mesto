@@ -57,9 +57,7 @@ function openAddCardForm() {
 /* Добавление карточки */
 function addCard(values) {
     const cardElement = createNewCard(values);
-
-    const card = new Section({ data: values, }, '.photo-grid__elements');
-    card.addItem(cardElement, true);
+    defaultCardList.addItem(cardElement, true)
 }
 
 function createNewCard(cardData) {
