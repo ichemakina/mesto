@@ -2,9 +2,9 @@ import './pages/index.css';
 
 import { Card } from "./components/Card.js";
 import { Section } from "./components/Section.js";
-import { Popup } from "./components/Popup.js"
-import { closePopup } from "./utils/utils.js";
-import { initialCards, popupCardImage } from "./utils/constants.js"
+import { Popup } from "./components/Popup.js";
+import { PopupWithImage } from "./components/PopupWithImage";
+import { initialCards } from "./utils/constants.js"
 import { validatorFormEditProfile, validatorFormAddCard } from "./utils/validate.js";
 
 /* Открытие формы редактирования профиля */
@@ -85,15 +85,14 @@ function addCard(evt) {
 }
 
 function createNewCard(cardData) {
-    const newCard = new Card(cardData, '.photo-grid-element-template');
+    const newCard = new Card(cardData, '.photo-grid-element-template', openCardImage);
     return newCard.createCard();
 }
 
-/* Закрытие просмотра картинки */
-const closeCardImageButton = document.querySelector('.popup__close-button_form_card-img');
-closeCardImageButton.addEventListener('click', closeCardImage);
-
-
-function closeCardImage() {
-    closePopup(popupCardImage);
+/* Просмотр картинки */
+const popupImage = new PopupWithImage('.popup_type_card-img');
+function openCardImage(link, name) {
+    console.log(popupImage)
+    popupImage.open(link, name);
+    popupImage.setEventListeners();
 }

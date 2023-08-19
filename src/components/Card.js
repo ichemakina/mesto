@@ -1,11 +1,9 @@
-import { openPopup } from '../utils/utils.js';
-import { popupCardImage, popupImage, popupImageCaption } from '../utils/constants.js';
-
 export class Card {
-    constructor(data, cardTemplateClass) {
+    constructor(data, cardTemplateClass, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardTemplateClass = cardTemplateClass;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -25,7 +23,7 @@ export class Card {
             this._deleteCard()
         });
         this._cardElement.querySelector('.photo-grid__image').addEventListener('click', () => {
-            this._openCardImage()
+            this._handleCardClick(this._link, this._name);
         });
     }
 
@@ -38,15 +36,6 @@ export class Card {
     /* Удаление карточки */
     _deleteCard() {
         this._cardElement.remove();
-    }
-
-    /* Просмотр картинки */
-    _openCardImage() {
-        popupImage.setAttribute('src', this._link);
-        popupImage.setAttribute('alt', this._name);
-        popupImageCaption.textContent = this._name;
-
-        openPopup(popupCardImage);
     }
 
     createCard() {
