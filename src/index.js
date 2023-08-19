@@ -2,13 +2,13 @@ import './pages/index.css';
 
 import { Card } from "./components/Card.js";
 import { Section } from "./components/Section.js";
-import { Popup } from "./components/Popup.js";
 import { PopupWithImage } from "./components/PopupWithImage";
 import { initialCards } from "./utils/constants.js"
 import { validatorFormEditProfile, validatorFormAddCard } from "./utils/validate.js";
+import { PopupWithForm } from './components/PopupWithForm';
 
 /* Открытие формы редактирования профиля */
-const popupEditProfile = new Popup('.popup_type_edit-profile');
+const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', submitProfileInfo);
 const editButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__subtitle');
@@ -26,18 +26,12 @@ function openEditProfileForm() {
 }
 
 /* Изменение информации в профиле */
-const formEditProfile = document.querySelector('form[name="editPrifile"]');
-formEditProfile.addEventListener('submit', submitProfileInfo);
-
-function submitProfileInfo(evt) {
-    evt.preventDefault();
-
-    const newName = nameInput.value;
-    const newDescription = descriptionInput.value;
+function submitProfileInfo(values) {
+    const newName = values.name;
+    const newDescription = values.description;
 
     profileName.textContent = newName;
     profileDescription.textContent = newDescription;
-    popupEditProfile.close();
 }
 
 /* Добавление карточек "из коробки" */
@@ -51,7 +45,7 @@ const defaultCardList = new Section({
 defaultCardList.renderItems();
 
 /* Открытие формы для добавления карточки */
-const popupAddCard = new Popup('.popup_type_add-card');
+const popupAddCard = new PopupWithForm('.popup_type_add-card', addCard);
 const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
 
@@ -62,26 +56,11 @@ function openAddCardForm() {
 }
 
 /* Добавление карточки */
-const formAddCard = document.querySelector('form[name="addCard"]');
-const cardNameInput = document.querySelector('.popup__field_type_card-name');
-const imgLinkInput = document.querySelector('.popup__field_type_card-img-link');
-formAddCard.addEventListener('submit', addCard);
+function addCard(values) {
+    const cardElement = createNewCard(values);
 
-function addCard(evt) {
-    evt.preventDefault();
-
-    const newCardName = cardNameInput.value;
-    const newImgLink = imgLinkInput.value;
-    const cardData = {
-        name: newCardName,
-        link: newImgLink
-    };
-
-    const cardElement = createNewCard(cardData);
-    defaultCardList.addItem(cardElement, true);
-
-    evt.target.reset();
-    popupAddCard.close();
+    const card = new Section({ data: values, }, '.photo-grid__elements');
+    card.addItem(cardElement, true);
 }
 
 function createNewCard(cardData) {
