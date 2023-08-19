@@ -6,32 +6,31 @@ import { PopupWithImage } from "./components/PopupWithImage";
 import { initialCards } from "./utils/constants.js"
 import { validatorFormEditProfile, validatorFormAddCard } from "./utils/validate.js";
 import { PopupWithForm } from './components/PopupWithForm';
+import { UserInfo } from './components/UserInfo';
 
 /* Открытие формы редактирования профиля */
 const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', submitProfileInfo);
 const editButton = document.querySelector('.profile__edit-button');
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('.popup__field_type_name');
 const descriptionInput = document.querySelector('.popup__field_type_description');
 editButton.addEventListener('click', openEditProfileForm);
-
+const profileInfo = new UserInfo({
+    profileNameSelector: '.profile__name',
+    profileDescriptionSelector: '.profile__subtitle'
+});
 function openEditProfileForm() {
     validatorFormEditProfile.clearError();
 
-    nameInput.value = profileName.textContent;
-    descriptionInput.value = profileDescription.textContent;
+    const profile = profileInfo.getUserInfo();
+    nameInput.value = profile.name;
+    descriptionInput.value = profile.description;
     popupEditProfile.open()
     popupEditProfile.setEventListeners();
 }
 
 /* Изменение информации в профиле */
 function submitProfileInfo(values) {
-    const newName = values.name;
-    const newDescription = values.description;
-
-    profileName.textContent = newName;
-    profileDescription.textContent = newDescription;
+    profileInfo.setUserInfo(values);
 }
 
 /* Добавление карточек "из коробки" */
