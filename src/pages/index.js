@@ -45,13 +45,13 @@ defaultCardList.renderItems();
 
 /* Открытие формы для добавления карточки */
 const popupAddCard = new PopupWithForm('.popup_type_add-card', addCard);
+popupAddCard.setEventListeners();
 const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
 
 function openAddCardForm() {
     validatorFormAddCard.toggleButtonState();
     popupAddCard.open()
-    popupAddCard.setEventListeners();
 }
 
 /* Добавление карточки */
