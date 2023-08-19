@@ -1,12 +1,12 @@
-import './pages/index.css';
+import './index.css';
 
-import { Card } from "./components/Card.js";
-import { Section } from "./components/Section.js";
-import { PopupWithImage } from "./components/PopupWithImage";
-import { initialCards } from "./utils/constants.js"
-import { validatorFormEditProfile, validatorFormAddCard } from "./utils/validate.js";
-import { PopupWithForm } from './components/PopupWithForm';
-import { UserInfo } from './components/UserInfo';
+import { Card } from "../components/Card.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PopupWithImage";
+import { initialCards } from "../utils/constants.js"
+import { validatorFormEditProfile, validatorFormAddCard } from "../utils/validate.js";
+import { PopupWithForm } from '../components/PopupWithForm';
+import { UserInfo } from '../components/UserInfo';
 
 /* Открытие формы редактирования профиля */
 const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', submitProfileInfo);
