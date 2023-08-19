@@ -2,11 +2,13 @@ import './pages/index.css';
 
 import { Card } from "./components/Card.js";
 import { Section } from "./components/Section.js";
-import { openPopup, closePopup } from "./utils/utils.js";
-import { initialCards, popupCardImage, popupEditProfile, popupAddCard } from "./utils/constants.js"
+import { Popup } from "./components/Popup.js"
+import { closePopup } from "./utils/utils.js";
+import { initialCards, popupCardImage } from "./utils/constants.js"
 import { validatorFormEditProfile, validatorFormAddCard } from "./utils/validate.js";
 
 /* Открытие формы редактирования профиля */
+const popupEditProfile = new Popup('.popup_type_edit-profile');
 const editButton = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__subtitle');
@@ -19,15 +21,8 @@ function openEditProfileForm() {
 
     nameInput.value = profileName.textContent;
     descriptionInput.value = profileDescription.textContent;
-    openPopup(popupEditProfile);
-}
-
-/* Закрытие формы редактирования профиля */
-const buttonClosePopupProfile = document.querySelector('.popup__close-button_form_edit-profile');
-buttonClosePopupProfile.addEventListener('click', closeEditProfileForm);
-
-function closeEditProfileForm() {
-    closePopup(popupEditProfile);
+    popupEditProfile.open()
+    popupEditProfile.setEventListeners();
 }
 
 /* Изменение информации в профиле */
@@ -42,7 +37,7 @@ function submitProfileInfo(evt) {
 
     profileName.textContent = newName;
     profileDescription.textContent = newDescription;
-    closeEditProfileForm();
+    popupEditProfile.close();
 }
 
 /* Добавление карточек "из коробки" */
@@ -56,22 +51,14 @@ const defaultCardList = new Section({
 defaultCardList.renderItems();
 
 /* Открытие формы для добавления карточки */
-
+const popupAddCard = new Popup('.popup_type_add-card');
 const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
 
 function openAddCardForm() {
     validatorFormAddCard.toggleButtonState();
-
-    openPopup(popupAddCard);
-}
-
-/* Закрытие формы для добавления карточки */
-const buttonClosePopupAddCard = document.querySelector('.popup__close-button_form_add-card');
-buttonClosePopupAddCard.addEventListener('click', closeAddCardForm);
-
-function closeAddCardForm() {
-    closePopup(popupAddCard);
+    popupAddCard.open()
+    popupAddCard.setEventListeners();
 }
 
 /* Добавление карточки */
@@ -94,7 +81,7 @@ function addCard(evt) {
     defaultCardList.addItem(cardElement, true);
 
     evt.target.reset();
-    closeAddCardForm();
+    popupAddCard.close();
 }
 
 function createNewCard(cardData) {
