@@ -19,6 +19,7 @@ validatorFormAddCard.enableValidation();
 
 /* Открытие формы редактирования профиля */
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, submitProfileInfo);
+popupEditProfile.setEventListeners();
 const editButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.popup__field_type_name');
 const descriptionInput = document.querySelector('.popup__field_type_description');
@@ -34,7 +35,6 @@ function openEditProfileForm() {
     nameInput.value = profile.name;
     descriptionInput.value = profile.description;
     popupEditProfile.open()
-    popupEditProfile.setEventListeners();
 }
 
 /* Изменение информации в профиле */
@@ -76,7 +76,7 @@ function createNewCard(cardData) {
 
 /* Просмотр картинки */
 const popupImage = new PopupWithImage('.popup_type_card-img');
+popupImage.setEventListeners();
 function openCardImage(link, name) {
     popupImage.open(link, name);
-    popupImage.setEventListeners();
 }
