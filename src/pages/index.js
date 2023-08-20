@@ -3,13 +3,22 @@ import './index.css';
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage";
-import { initialCards } from "../utils/constants.js"
-import { validatorFormEditProfile, validatorFormAddCard } from "../utils/validate.js";
+import { initialCards, settings, popupEditProfileSelector, popupAddCardSelector } from "../utils/constants.js"
 import { PopupWithForm } from '../components/PopupWithForm';
 import { UserInfo } from '../components/UserInfo';
+import {FormValidator} from '../components/FormValidator'
+
+/* Валидация форм */
+const formEditProfile = document.querySelector(popupEditProfileSelector);
+const validatorFormEditProfile = new FormValidator(settings, formEditProfile);
+validatorFormEditProfile.enableValidation();
+
+const formAddCard = document.querySelector(popupAddCardSelector);
+const validatorFormAddCard = new FormValidator(settings, formAddCard);
+validatorFormAddCard.enableValidation();
 
 /* Открытие формы редактирования профиля */
-const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', submitProfileInfo);
+const popupEditProfile = new PopupWithForm(popupEditProfileSelector, submitProfileInfo);
 const editButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.popup__field_type_name');
 const descriptionInput = document.querySelector('.popup__field_type_description');
@@ -44,7 +53,7 @@ const defaultCardList = new Section({
 defaultCardList.renderItems();
 
 /* Открытие формы для добавления карточки */
-const popupAddCard = new PopupWithForm('.popup_type_add-card', addCard);
+const popupAddCard = new PopupWithForm(popupAddCardSelector, addCard);
 popupAddCard.setEventListeners();
 const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', openAddCardForm);
