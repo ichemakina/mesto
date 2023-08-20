@@ -40,17 +40,17 @@ function openEditProfileForm() {
 /* Изменение информации в профиле */
 function submitProfileInfo(values) {
     profileInfo.setUserInfo(values);
+    popupEditProfile.close();
 }
 
 /* Добавление карточек "из коробки" */
 const defaultCardList = new Section({
-    data: initialCards,
     renderer: (item) => {
         const cardElement = createNewCard(item);
         defaultCardList.addItem(cardElement);
     }
 }, '.photo-grid__elements');
-defaultCardList.renderItems();
+defaultCardList.renderItems(initialCards);
 
 /* Открытие формы для добавления карточки */
 const popupAddCard = new PopupWithForm(popupAddCardSelector, addCard);
@@ -67,6 +67,7 @@ function openAddCardForm() {
 function addCard(values) {
     const cardElement = createNewCard(values);
     defaultCardList.addItem(cardElement, true)
+    popupAddCard.close();
 }
 
 function createNewCard(cardData) {

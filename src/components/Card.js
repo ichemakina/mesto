@@ -36,6 +36,7 @@ export class Card {
     /* Удаление карточки */
     _deleteCard() {
         this._cardElement.remove();
+        this._cardElement = null;
     }
 
     createCard() {

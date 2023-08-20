@@ -7,7 +7,6 @@ export class PopupWithForm extends Popup {
         this._form = this._popup.querySelector('.popup__form');
         this._inputs = this._form.querySelectorAll('.popup__field');
         this._inputValues = {};
-        this._isNotResetFormData = popupSelector === '.popup_type_edit-profile';
     }
 
     _getInputValues() {
@@ -27,14 +26,11 @@ export class PopupWithForm extends Popup {
             evt.preventDefault();
 
             this._submit();
-            this.close();
         });
     }
 
     close() {
         super.close();
-        if (!this._isNotResetFormData) {
-            this._form.reset();
-        }
+        this._form.reset();
     }
 }
