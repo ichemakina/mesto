@@ -60,7 +60,8 @@ addButton.addEventListener('click', openAddCardForm);
 
 function openAddCardForm() {
     validatorFormAddCard.toggleButtonState();
-    popupAddCard.open()
+    validatorFormAddCard.clearError();
+    popupAddCard.open();
 }
 
 /* Добавление карточки */
