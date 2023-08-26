@@ -3,10 +3,30 @@ import './index.css';
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage";
-import { initialCards, settings, popupEditProfileSelector, popupAddCardSelector } from "../utils/constants.js"
+import { settings, popupEditProfileSelector, popupAddCardSelector } from "../utils/constants.js"
 import { PopupWithForm } from '../components/PopupWithForm';
 import { UserInfo } from '../components/UserInfo';
-import {FormValidator} from '../components/FormValidator'
+import { FormValidator } from '../components/FormValidator';
+import { apiConfig } from '../utils/apiConfig';
+import { Api } from '../components/Api';
+
+const api = new Api(apiConfig);
+
+/* Добавление карточек "из коробки" */
+const defaultCardList = new Section({
+    renderer: (item) => {
+        const cardElement = createNewCard(item);
+        defaultCardList.addItem(cardElement);
+    }
+}, '.photo-grid__elements');
+
+api.getInitialCards()
+    .then((res) => {
+        defaultCardList.renderItems(res);
+    })
+    .catch((err) => {
+        console.log(err.message)
+    });
 
 /* Валидация форм */
 const formEditProfile = document.querySelector(popupEditProfileSelector);
@@ -42,15 +62,6 @@ function submitProfileInfo(values) {
     profileInfo.setUserInfo(values);
     popupEditProfile.close();
 }
-
-/* Добавление карточек "из коробки" */
-const defaultCardList = new Section({
-    renderer: (item) => {
-        const cardElement = createNewCard(item);
-        defaultCardList.addItem(cardElement);
-    }
-}, '.photo-grid__elements');
-defaultCardList.renderItems(initialCards);
 
 /* Открытие формы для добавления карточки */
 const popupAddCard = new PopupWithForm(popupAddCardSelector, addCard);
