@@ -4,7 +4,7 @@ export class Api {
         this._headers = options.headers;
     }
 
-    getUserInfo(){
+    getUserInfo() {
         return fetch(`${this._url}/users/me`, {
             headers: this._headers
         })
@@ -34,5 +34,16 @@ export class Api {
             .catch((err) => {
                 console.log(err.message)
             });
+    }
+
+    updateUserInfo(data) {
+        fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                about: data.about
+            })
+        });
     }
 }

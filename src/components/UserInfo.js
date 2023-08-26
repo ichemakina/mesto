@@ -8,13 +8,16 @@ export class UserInfo {
     getUserInfo() {
         return {
             name: this._profileName.textContent,
-            description: this._profileDescription.textContent
+            about: this._profileDescription.textContent
         };
     }
 
     setUserInfo(data) {
         this._profileName.textContent = data.name;
         this._profileDescription.textContent = data.about;
-        this._profileAvatar.setAttribute('src', data.avatar);
+        if(data.avatar != null)
+        {
+            this._profileAvatar.setAttribute('src', data.avatar);
+        }
     }
 }

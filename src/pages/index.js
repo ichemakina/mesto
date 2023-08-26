@@ -58,12 +58,13 @@ function openEditProfileForm() {
 
     const profile = profileInfo.getUserInfo();
     nameInput.value = profile.name;
-    descriptionInput.value = profile.description;
+    descriptionInput.value = profile.about;
     popupEditProfile.open()
 }
 
 /* Изменение информации в профиле */
 function submitProfileInfo(values) {
+    api.updateUserInfo(values);
     profileInfo.setUserInfo(values);
     popupEditProfile.close();
 }
