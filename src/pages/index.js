@@ -20,9 +20,13 @@ const defaultCardList = new Section({
     }
 }, '.photo-grid__elements');
 
-api.getInitialCards()
-    .then((res) => {
-        defaultCardList.renderItems(res);
+Promise.all([
+    api.getUserInfo(),
+    api.getInitialCards()
+])
+    .then((results) => {
+        profileInfo.setUserInfo(results[0]);
+        defaultCardList.renderItems(results[1]);
     })
     .catch((err) => {
         console.log(err.message)
@@ -46,7 +50,8 @@ const descriptionInput = document.querySelector('.popup__field_type_description'
 editButton.addEventListener('click', openEditProfileForm);
 const profileInfo = new UserInfo({
     profileNameSelector: '.profile__name',
-    profileDescriptionSelector: '.profile__subtitle'
+    profileDescriptionSelector: '.profile__subtitle',
+    profileAvatarSelector: '.profile__image'
 });
 function openEditProfileForm() {
     validatorFormEditProfile.clearError();
