@@ -1,10 +1,11 @@
 export class Card {
-    constructor(data, cardTemplateClass, handleCardClick) {
+    constructor(data, cardTemplateClass, handleCardClick, handleDeleteCardButtonClick) {
         this._name = data.name;
         this._link = data.link;
         this._countLikes = data.likes.length;
         this._cardTemplateClass = cardTemplateClass;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteCardButtonClick = handleDeleteCardButtonClick;
     }
 
     _getTemplate() {
@@ -21,7 +22,7 @@ export class Card {
             this._like()
         });
         this._cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', () => {
-            this._deleteCard()
+            this._handleDeleteCardButtonClick()
         });
         this._cardElement.querySelector('.photo-grid__image').addEventListener('click', () => {
             this._handleCardClick(this._link, this._name);
@@ -35,7 +36,8 @@ export class Card {
     }
 
     /* Удаление карточки */
-    _deleteCard() {
+    deleteCard() {
+        console.log('ttttt')
         this._cardElement.remove();
         this._cardElement = null;
     }

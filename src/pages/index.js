@@ -9,6 +9,7 @@ import { UserInfo } from '../components/UserInfo';
 import { FormValidator } from '../components/FormValidator';
 import { apiConfig } from '../utils/apiConfig';
 import { Api } from '../components/Api';
+import { PopupWithConfirm } from '../components/PopupWithConfirm';
 
 const api = new Api(apiConfig);
 
@@ -90,7 +91,9 @@ function addCard(values) {
 }
 
 function createNewCard(cardData) {
-    const newCard = new Card(cardData, '.photo-grid-element-template', openCardImage);
+    const newCard = new Card(cardData, '.photo-grid-element-template', openCardImage, () => {
+        deleteCard(newCard)
+    });
     return newCard.createCard();
 }
 
@@ -99,4 +102,14 @@ const popupImage = new PopupWithImage('.popup_type_card-img');
 popupImage.setEventListeners();
 function openCardImage(link, name) {
     popupImage.open(link, name);
+}
+
+const popupDeleteCard = new PopupWithConfirm('.popup_type_confirm');
+popupDeleteCard.setEventListeners();
+function deleteCard(card) {
+    popupDeleteCard.open();
+    popupDeleteCard.setConfirmAction(() => {
+        card.deleteCard();
+        popupDeleteCard.close();
+    });
 }
