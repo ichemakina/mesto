@@ -86,9 +86,15 @@ function openAddCardForm() {
 
 /* Добавление карточки */
 function addCard(values) {
-    const cardElement = createNewCard(values);
-    defaultCardList.addItem(cardElement, true);
-    api.addNewCard(values);
+    api.addNewCard(values)
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
+            const cardElement = createNewCard(data);
+            defaultCardList.addItem(cardElement, true);
+        })
+
     popupAddCard.close();
 }
 

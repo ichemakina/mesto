@@ -48,7 +48,7 @@ export class Api {
     }
 
     addNewCard(data) {
-        fetch(`${this._url}/cards`, {
+        return fetch(`${this._url}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
