@@ -57,4 +57,11 @@ export class Api {
             })
         });
     }
+
+    deleteCard(cardId) {
+        fetch(`${this._url}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        });
+    }
 }

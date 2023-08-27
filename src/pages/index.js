@@ -117,6 +117,7 @@ popupDeleteCard.setEventListeners();
 function deleteCard(card) {
     popupDeleteCard.open();
     popupDeleteCard.setConfirmAction(() => {
+        api.deleteCard(card._id);
         card.deleteCard();
         popupDeleteCard.close();
     });

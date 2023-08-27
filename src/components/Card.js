@@ -3,6 +3,7 @@ export class Card {
         this._name = data.name;
         this._link = data.link;
         this._ownerId = data.owner._id;
+        this._id = data._id;
         this._currentUserId = currentUserId;
         this._countLikes = data.likes.length;
         this._cardTemplateClass = cardTemplateClass;
@@ -39,7 +40,6 @@ export class Card {
 
     /* Удаление карточки */
     deleteCard() {
-        console.log('ttttt')
         this._cardElement.remove();
         this._cardElement = null;
     }
