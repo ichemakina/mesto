@@ -99,9 +99,16 @@ function addCard(values) {
 }
 
 function createNewCard(cardData) {
-    const newCard = new Card(cardData, currentUserId, '.photo-grid-element-template', openCardImage, () => {
-        deleteCard(newCard)
-    });
+    const newCard = new Card(cardData,
+        currentUserId,
+        '.photo-grid-element-template',
+        openCardImage,
+        () => {
+            deleteCard(newCard)
+        },
+        () => {
+            likeCard(newCard)
+        });
     return newCard.createCard();
 }
 
@@ -112,6 +119,7 @@ function openCardImage(link, name) {
     popupImage.open(link, name);
 }
 
+/* Удаление карточки */
 const popupDeleteCard = new PopupWithConfirm('.popup_type_confirm');
 popupDeleteCard.setEventListeners();
 function deleteCard(card) {
@@ -121,4 +129,21 @@ function deleteCard(card) {
         card.deleteCard();
         popupDeleteCard.close();
     });
+}
+
+function likeCard(card) {
+    let promise;
+    if (!card.isLikedCard()) {
+        promise = api.likeCard(card._id);
+    }
+    else {
+        promise = api.deleteLikeCard(card._id);
+    }
+    promise
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
+            card.like(data)
+        });
 }
