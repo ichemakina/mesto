@@ -2,6 +2,7 @@ export class Card {
     constructor(data, cardTemplateClass, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
+        this._countLikes = data.likes.length;
         this._cardTemplateClass = cardTemplateClass;
         this._handleCardClick = handleCardClick;
     }
@@ -44,10 +45,12 @@ export class Card {
 
         const cardNameElement = this._cardElement.querySelector('.photo-grid__name');
         const cardImageElement = this._cardElement.querySelector('.photo-grid__image');
+        const cardCountLikesElement = this._cardElement.querySelector('.photo-grid__count-likes');
 
         cardNameElement.textContent = this._name;
         cardImageElement.setAttribute('src', this._link);
         cardImageElement.setAttribute('alt', this._name);
+        cardCountLikesElement.textContent = this._countLikes;
 
         this._setEventListeners();
 
