@@ -11,6 +11,7 @@ import { apiConfig } from '../utils/apiConfig';
 import { Api } from '../components/Api';
 import { PopupWithConfirm } from '../components/PopupWithConfirm';
 
+let currentUserId;
 const api = new Api(apiConfig);
 
 /* Добавление карточек "из коробки" */
@@ -26,6 +27,7 @@ Promise.all([
     api.getInitialCards()
 ])
     .then((results) => {
+        currentUserId = results[0]._id;
         profileInfo.setUserInfo(results[0]);
         defaultCardList.renderItems(results[1]);
     })
@@ -91,7 +93,7 @@ function addCard(values) {
 }
 
 function createNewCard(cardData) {
-    const newCard = new Card(cardData, '.photo-grid-element-template', openCardImage, () => {
+    const newCard = new Card(cardData, currentUserId, '.photo-grid-element-template', openCardImage, () => {
         deleteCard(newCard)
     });
     return newCard.createCard();

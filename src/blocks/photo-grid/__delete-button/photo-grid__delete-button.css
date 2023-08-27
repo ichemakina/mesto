@@ -13,6 +13,7 @@
     background-position: center;
     cursor: pointer;
     transition: opacity 1s ease-out;
+    display: none;
 }
 
 .photo-grid__delete-button:hover {

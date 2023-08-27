@@ -1,7 +1,9 @@
 export class Card {
-    constructor(data, cardTemplateClass, handleCardClick, handleDeleteCardButtonClick) {
+    constructor(data, currentUserId, cardTemplateClass, handleCardClick, handleDeleteCardButtonClick) {
         this._name = data.name;
         this._link = data.link;
+        this._ownerId = data.owner._id;
+        this._currentUserId = currentUserId;
         this._countLikes = data.likes.length;
         this._cardTemplateClass = cardTemplateClass;
         this._handleCardClick = handleCardClick;
@@ -53,6 +55,11 @@ export class Card {
         cardImageElement.setAttribute('src', this._link);
         cardImageElement.setAttribute('alt', this._name);
         cardCountLikesElement.textContent = this._countLikes;
+
+        if (this._currentUserId == this._ownerId) {
+            const cardDeleteButton = this._cardElement.querySelector('.photo-grid__delete-button');
+            cardDeleteButton.classList.add('photo-grid__delete-button_visible');
+        }
 
         this._setEventListeners();
 
