@@ -32,7 +32,7 @@ Promise.all([
         defaultCardList.renderItems(results[1]);
     })
     .catch((err) => {
-        console.log(err.message)
+        console.log(err.message);
     });
 
 /* Валидация форм */
@@ -73,7 +73,12 @@ function openEditProfileForm() {
 function submitProfileInfo(values) {
     api.updateUserInfo(values)
         .then((res) => {
-            return res.json();
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .catch((err) => {
+            console.log(err.message);
         })
         .finally(() => {
             popupEditProfile.renderLoading(false);
@@ -99,11 +104,18 @@ function openAddCardForm() {
 function addCard(values) {
     api.addNewCard(values)
         .then((res) => {
-            return res.json();
+            if (res.ok) {
+                return res.json();
+            }
+
+            return Promise.reject(`Ошибка: ${res.status}`);
         })
         .then((data) => {
             const cardElement = createNewCard(data);
             defaultCardList.addItem(cardElement, true);
+        })
+        .catch((err) => {
+            console.log(err.message);
         })
         .finally(() => {
             popupAddCard.renderLoading(false);
@@ -139,7 +151,17 @@ popupDeleteCard.setEventListeners();
 function deleteCard(card) {
     popupDeleteCard.open();
     popupDeleteCard.setConfirmAction(() => {
-        api.deleteCard(card._id);
+        api.deleteCard(card._id)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+
+                return Promise.reject(`Ошибка: ${res.status}`);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
         card.deleteCard();
         popupDeleteCard.close();
     });
@@ -156,10 +178,17 @@ function likeCard(card) {
     }
     promise
         .then((res) => {
-            return res.json()
+            if (res.ok) {
+                return res.json();
+            }
+
+            return Promise.reject(`Ошибка: ${res.status}`);
         })
         .then((data) => {
             card.like(data)
+        })
+        .catch((err) => {
+            console.log(err.message);
         });
 }
 
@@ -179,10 +208,17 @@ function openEditAvatarForm() {
 function editAvatar(values) {
     api.updateUserAvatar(values.avatar)
         .then((res) => {
-            return res.json();
+            if (res.ok) {
+                return res.json();
+            }
+
+            return Promise.reject(`Ошибка: ${res.status}`);
         })
         .then(() => {
             profileInfo.updateAvatar(values.avatar);
+        })
+        .catch((err) => {
+            console.log(err.message);
         })
         .finally(() => {
             popupEditAvatar.renderLoading(false);
