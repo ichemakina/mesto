@@ -37,7 +37,7 @@ export class Api {
     }
 
     updateUserInfo(data) {
-        fetch(`${this._url}/users/me`, {
+        return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({

@@ -71,7 +71,14 @@ function openEditProfileForm() {
 
 /* Изменение информации в профиле */
 function submitProfileInfo(values) {
-    api.updateUserInfo(values);
+    api.updateUserInfo(values)
+        .then((res) => {
+            return res.json();
+        })
+        .finally(() => {
+            popupEditProfile.renderLoading(false);
+        });
+
     profileInfo.setUserInfo(values);
     popupEditProfile.close();
 }
@@ -92,12 +99,15 @@ function openAddCardForm() {
 function addCard(values) {
     api.addNewCard(values)
         .then((res) => {
-            return res.json()
+            return res.json();
         })
         .then((data) => {
             const cardElement = createNewCard(data);
             defaultCardList.addItem(cardElement, true);
         })
+        .finally(() => {
+            popupAddCard.renderLoading(false);
+        });
 
     popupAddCard.close();
 }
@@ -169,11 +179,14 @@ function openEditAvatarForm() {
 function editAvatar(values) {
     api.updateUserAvatar(values.avatar)
         .then((res) => {
-            return res.json()
+            return res.json();
         })
         .then(() => {
             profileInfo.updateAvatar(values.avatar);
         })
+        .finally(() => {
+            popupEditAvatar.renderLoading(false);
+        });
 
     popupEditAvatar.close();
 }
