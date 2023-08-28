@@ -14,7 +14,11 @@
     <main class="main">
         <section class="profile">
             <div class="profile__person-info">
-                <img class="profile__image" src="<%= require('./images/avatar.jpg')%>" alt="Фотография пользователя">
+                <div class="profile__avatar">
+                    <img class="profile__image" src="<%= require('./images/avatar.jpg')%>"
+                        alt="Фотография пользователя">
+                    <button type="button" class="profile__edit-avatar-button" aria-label="Обновить аватар"></button>
+                </div>
                 <div class="profile__info">
                     <div class="profile__title">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
