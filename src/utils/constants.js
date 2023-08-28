@@ -9,3 +9,4 @@ export const settings = {
 
 export const popupEditProfileSelector = '.popup_type_edit-profile';
 export const popupAddCardSelector = '.popup_type_add-card';
+export const popupEditAvatarSelector = '.popup_type_edit-avatar';

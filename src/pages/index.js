@@ -3,7 +3,7 @@ import './index.css';
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage";
-import { settings, popupEditProfileSelector, popupAddCardSelector } from "../utils/constants.js"
+import { settings, popupEditProfileSelector, popupAddCardSelector, popupEditAvatarSelector } from "../utils/constants.js"
 import { PopupWithForm } from '../components/PopupWithForm';
 import { UserInfo } from '../components/UserInfo';
 import { FormValidator } from '../components/FormValidator';
@@ -43,6 +43,10 @@ validatorFormEditProfile.enableValidation();
 const formAddCard = document.querySelector(popupAddCardSelector);
 const validatorFormAddCard = new FormValidator(settings, formAddCard);
 validatorFormAddCard.enableValidation();
+
+const formEditAvatar = document.querySelector(popupEditAvatarSelector);
+const validatorFormEditAvatar = new FormValidator(settings, formEditAvatar);
+validatorFormEditAvatar.enableValidation();
 
 /* Открытие формы редактирования профиля */
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, submitProfileInfo);
@@ -131,6 +135,7 @@ function deleteCard(card) {
     });
 }
 
+/* Добавление/удаление лайков */
 function likeCard(card) {
     let promise;
     if (!card.isLikedCard()) {
@@ -146,4 +151,16 @@ function likeCard(card) {
         .then((data) => {
             card.like(data)
         });
+}
+
+/* Открытие формы для изменения аватара */
+const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, addCard);
+popupEditAvatar.setEventListeners();
+const editAvatarButton = document.querySelector('.profile__edit-avatar-button');
+editAvatarButton.addEventListener('click', openEditAvatarForm);
+
+function openEditAvatarForm() {
+    validatorFormEditAvatar.toggleButtonState();
+    validatorFormEditAvatar.clearError();
+    popupEditAvatar.open();
 }

@@ -94,6 +94,21 @@
             <button type="button" class="popup__submit-button popup__confirm-button">Да</button>
         </div>
     </div>
+    <div class="popup popup_type_edit-avatar">
+        <div class="popup__container">
+            <button type="button" class="popup__close-button popup__close-button_form_edit-profile"
+                aria-label="Закрыть"></button>
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form class="popup__form" name="editAvatar" novalidate>
+                <label class="popup__label">
+                    <input class="popup__field popup__field_type_avatar-link" type="url"
+                        placeholder="Ссылка на новый аватар" name="avatar-link" id="avatar-link-field" required>
+                    <span class="popup__field-error avatar-link-field-error"></span>
+                </label>
+                <button type="submit" class="popup__submit-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
     <template class="photo-grid-element-template">
         <li class="photo-grid__element">
             <button type="submit" class="photo-grid__delete-button" aria-label="Удалить"></button>
