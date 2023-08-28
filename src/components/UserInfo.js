@@ -5,6 +5,10 @@ export class UserInfo {
         this._profileAvatar = document.querySelector(profileAvatarSelector);
     }
 
+    updateAvatar(avatarLink) {
+        this._profileAvatar.setAttribute('src', avatarLink);
+    }
+
     getUserInfo() {
         return {
             name: this._profileName.textContent,
@@ -15,9 +19,8 @@ export class UserInfo {
     setUserInfo(data) {
         this._profileName.textContent = data.name;
         this._profileDescription.textContent = data.about;
-        if(data.avatar != null)
-        {
-            this._profileAvatar.setAttribute('src', data.avatar);
+        if (data.avatar != null) {
+            this.updateAvatar(data.avatar);
         }
     }
 }

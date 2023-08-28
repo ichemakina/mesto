@@ -154,7 +154,7 @@ function likeCard(card) {
 }
 
 /* Открытие формы для изменения аватара */
-const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, addCard);
+const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, editAvatar);
 popupEditAvatar.setEventListeners();
 const editAvatarButton = document.querySelector('.profile__edit-avatar-button');
 editAvatarButton.addEventListener('click', openEditAvatarForm);
@@ -163,4 +163,17 @@ function openEditAvatarForm() {
     validatorFormEditAvatar.toggleButtonState();
     validatorFormEditAvatar.clearError();
     popupEditAvatar.open();
+}
+
+/* Изменение аватара */
+function editAvatar(values) {
+    api.updateUserAvatar(values.avatar)
+        .then((res) => {
+            return res.json()
+        })
+        .then(() => {
+            profileInfo.updateAvatar(values.avatar);
+        })
+
+    popupEditAvatar.close();
 }

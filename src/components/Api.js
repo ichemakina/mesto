@@ -80,7 +80,7 @@ export class Api {
     }
 
     updateUserAvatar(avatarLink) {
-        fetch(`${this._url}/users/me/avatar`, {
+        return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
