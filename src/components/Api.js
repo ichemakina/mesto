@@ -17,7 +17,7 @@ export class Api {
     }
 
     getUserInfo() {
-        return this._request(`${this._url}/users/me1`, {
+        return this._request(`${this._url}/users/me`, {
             headers: this._headers
         });
     }
