@@ -22,13 +22,13 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._cardElement.querySelector('.photo-grid__like-button').addEventListener('click', () => {
+        this._likeElement.addEventListener('click', () => {
             this._handleLikeCardClick()
         });
         this._cardElement.querySelector('.photo-grid__delete-button').addEventListener('click', () => {
             this._handleDeleteCardButtonClick()
         });
-        this._cardElement.querySelector('.photo-grid__image').addEventListener('click', () => {
+        this._cardImageElement.addEventListener('click', () => {
             this._handleCardClick(this._link, this._name);
         });
     }
@@ -54,11 +54,11 @@ export class Card {
         this._cardElement = this._getTemplate();
 
         const cardNameElement = this._cardElement.querySelector('.photo-grid__name');
-        const cardImageElement = this._cardElement.querySelector('.photo-grid__image');
+        this._cardImageElement = this._cardElement.querySelector('.photo-grid__image');
 
         cardNameElement.textContent = this._name;
-        cardImageElement.setAttribute('src', this._link);
-        cardImageElement.setAttribute('alt', this._name);
+        this._cardImageElement.setAttribute('src', this._link);
+        this._cardImageElement.setAttribute('alt', this._name);
 
         this._cardCountLikesElement = this._cardElement.querySelector('.photo-grid__count-likes');
         this._cardCountLikesElement.textContent = this._likes.length;
